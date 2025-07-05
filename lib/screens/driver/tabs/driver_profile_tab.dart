@@ -27,19 +27,18 @@ class DriverProfileTab extends StatelessWidget {
     );
   }
 
+  // ... inside _buildProfileHeader() in driver_profile_tab.dart
   Widget _buildProfileHeader() {
     return Column(
       children: const [
         CircleAvatar(
           radius: 50,
-          backgroundColor: Colors.indigo,
+          // Use primary color from the new theme
+          backgroundColor: Color(0xFF2C3E50),
           foregroundColor: Colors.white,
           child: Text("RK", style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)),
         ),
-        SizedBox(height: 16),
-        Text("Ravi Kumar", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-        SizedBox(height: 4),
-        Text("+91 98765 43210", style: TextStyle(fontSize: 16, color: Colors.grey)),
+        // ... rest of the widget
       ],
     );
   }

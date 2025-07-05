@@ -15,12 +15,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   UserRole _selectedRole = UserRole.admin;
 
+  // lib/screens/auth/login_screen.dart
   void _login() {
-    // In a real app, you would validate credentials here
     if (_selectedRole == UserRole.admin) {
       Navigator.pushReplacementNamed(context, '/admin_dashboard');
     } else {
-      Navigator.pushReplacementNamed(context, '/driver_dashboard');
+      // Direct driver to the new main screen
+      Navigator.pushReplacementNamed(context, '/driver_main');
     }
   }
 

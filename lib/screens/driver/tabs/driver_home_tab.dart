@@ -1,7 +1,6 @@
 // lib/screens/driver/tabs/driver_home_tab.dart
 import 'package:flutter/material.dart';
-
-import '../../../widgets/detail_row.dart';
+import 'package:logistic_app/widgets/detail_row.dart';
 
 class DriverHomeTab extends StatefulWidget {
   const DriverHomeTab({super.key});
@@ -11,36 +10,11 @@ class DriverHomeTab extends StatefulWidget {
 }
 
 class _DriverHomeTabState extends State<DriverHomeTab> {
-  // Use this boolean to toggle between active/inactive trip UI
   bool _hasActiveTrip = true;
 
   @override
   Widget build(BuildContext context) {
     return _hasActiveTrip ? _buildActiveTripView() : _buildNoTripView();
-  }
-
-  Widget _buildNoTripView() {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.no_transfer, size: 80, color: Colors.grey[400]),
-            const SizedBox(height: 20),
-            const Text("No Active Trip", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 8),
-            const Text("You are currently free. Check back later for your next assignment.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
-            const SizedBox(height: 30),
-            ElevatedButton.icon(
-              onPressed: () { /* TODO: Implement refresh logic */ },
-              icon: const Icon(Icons.refresh),
-              label: const Text("Check for Trips"),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   Widget _buildActiveTripView() {
@@ -49,9 +23,9 @@ class _DriverHomeTabState extends State<DriverHomeTab> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildRouteCard(),
+          _buildRouteCard(), // This method is now included below
           const SizedBox(height: 16),
-          _buildMapPlaceholder(),
+          _buildMapPlaceholder(context),
           const SizedBox(height: 16),
           _buildActionButtons(context),
           const SizedBox(height: 16),
@@ -59,13 +33,14 @@ class _DriverHomeTabState extends State<DriverHomeTab> {
             onPressed: () {},
             icon: const Icon(Icons.check_circle_outline),
             label: const Text("Mark as Delivered"),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade600),
           ),
         ],
       ),
     );
   }
 
+  // --- THIS METHOD WAS MISSING ---
   Widget _buildRouteCard() {
     return Card(
       elevation: 4,
@@ -82,27 +57,30 @@ class _DriverHomeTabState extends State<DriverHomeTab> {
       ),
     );
   }
+  // --- END OF MISSING METHOD ---
 
-  Widget _buildMapPlaceholder() {
+  Widget _buildMapPlaceholder(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 4,
       child: Container(
         height: 200,
         color: Colors.grey[300],
-        child: const Center(
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.map_outlined, size: 60, color: Colors.indigo),
-              SizedBox(height: 8),
-              Text("Live Map / Navigation", style: TextStyle(fontWeight: FontWeight.bold)),
+              Icon(Icons.map_outlined, size: 60, color: Theme.of(context).colorScheme.primary),
+              const SizedBox(height: 8),
+              const Text("Live Map / Navigation", style: TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
         ),
       ),
     );
   }
+
+  // ... inside DriverHomeTab class in driver_home_tab.dart
 
   Widget _buildActionButtons(BuildContext context) {
     return Row(
@@ -113,7 +91,8 @@ class _DriverHomeTabState extends State<DriverHomeTab> {
             onPressed: () => Navigator.pushNamed(context, '/log_expense'),
             icon: const Icon(Icons.add_card),
             label: const Text("Log Expense"),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+            // Use accent color from the new theme
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFE67E22)), // Orange for expenses
           ),
         ),
         const SizedBox(width: 16),
@@ -122,9 +101,36 @@ class _DriverHomeTabState extends State<DriverHomeTab> {
             onPressed: () { /* TODO: Call support */ },
             icon: const Icon(Icons.call),
             label: const Text("Call Admin"),
+            // Use primary color from the new theme
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF2C3E50)), // Deep Slate Blue
           ),
         ),
       ],
+    );
+  }
+
+
+  Widget _buildNoTripView() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.no_transfer, size: 80, color: Colors.grey[400]),
+            const SizedBox(height: 20),
+            const Text("No Active Trip", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            const Text("You are currently free. Check back later for your next assignment.", textAlign: TextAlign.center, style: TextStyle(color: Colors.grey)),
+            const SizedBox(height: 30),
+            ElevatedButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.refresh),
+              label: const Text("Check for Trips"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

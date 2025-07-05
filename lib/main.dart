@@ -1,17 +1,15 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:logistic_app/screens/admin/add_edit_trip_screen.dart';
 import 'package:logistic_app/screens/admin/admin_dashboard_screen.dart';
 import 'package:logistic_app/screens/admin/admin_trip_details_screen.dart';
 import 'package:logistic_app/screens/auth/login_screen.dart';
-import 'package:logistic_app/screens/driver/driver_dashboard_screen.dart';
-import 'package:logistic_app/screens/driver/driver_trip_details_screen.dart';
+import 'package:logistic_app/screens/driver/driver_main_screen.dart';
 import 'package:logistic_app/screens/driver/log_expense_screen.dart';
-import 'package:logistic_app/utils/app_theme.dart';
 
 void main() {
   runApp(const LogisticsApp());
 }
+
 
 class LogisticsApp extends StatelessWidget {
   const LogisticsApp({super.key});
@@ -19,20 +17,18 @@ class LogisticsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Logistics Pro',
-      theme: AppTheme.theme,
       debugShowCheckedModeBanner: false,
       initialRoute: '/login',
+      // FIX: Ensure there are no duplicate keys in this map.
+      // Every string on the left side of the colon must be unique.
       routes: {
         '/login': (context) => const LoginScreen(),
-        // Admin Routes
         '/admin_dashboard': (context) => const AdminDashboardScreen(),
         '/admin_trip_details': (context) => const AdminTripDetailsScreen(),
         '/add_edit_trip': (context) => const AddEditTripScreen(),
-        // Driver Routes
-        '/driver_dashboard': (context) => DriverDashboardScreen(),
-        '/driver_trip_details': (context) => const DriverTripDetailsScreen(),
+        '/driver_main': (context) => const DriverMainScreen(),
         '/log_expense': (context) => const LogExpenseScreen(),
+        // Make sure no other route above or below has the same key string.
       },
     );
   }

@@ -1,6 +1,4 @@
-// lib/screens/admin/admin_trips_screen.dart
 import 'package:flutter/material.dart';
-
 import '../../models/trip_model.dart';
 
 class AdminTripsScreen extends StatelessWidget {
@@ -8,9 +6,9 @@ class AdminTripsScreen extends StatelessWidget {
 
   // Dummy data
   static final List<Trip> _trips = [
-    Trip(id: "TRIP-001", pickupPoint: "Mumbai Port", deliveryPoint: "Pune Warehouse", driverName: "Ravi Kumar", truckId: "MH01-AB1234", status: TripStatus.InProgress, totalKm: 150, startDate: DateTime.now()),
-    Trip(id: "TRIP-002", pickupPoint: "Delhi Airport", deliveryPoint: "Noida Sector 62", driverName: "Suresh Singh", truckId: "DL02-CD5678", status: TripStatus.Completed, totalKm: 45, startDate: DateTime.now().subtract(const Duration(days: 2))),
-    Trip(id: "TRIP-003", pickupPoint: "Chennai Hub", deliveryPoint: "Bangalore IT Park", driverName: "Amit Patel", truckId: "TN03-EF9012", status: TripStatus.Pending, totalKm: 350, startDate: DateTime.now().add(const Duration(days: 1))),
+    Trip(id: "TRIP-001", pickupPoint: "Mumbai Port", deliveryPoint: "Pune Warehouse", driverName: "Ravi Kumar", truckId: "MH01-AB1234", status: TripStatus.inProgress, totalKm: 150, startDate: DateTime.now()),
+    Trip(id: "TRIP-002", pickupPoint: "Delhi Airport", deliveryPoint: "Noida Sector 62", driverName: "Suresh Singh", truckId: "DL02-CD5678", status: TripStatus.completed, totalKm: 45, startDate: DateTime.now().subtract(const Duration(days: 2))),
+    Trip(id: "TRIP-003", pickupPoint: "Chennai Hub", deliveryPoint: "Bangalore IT Park", driverName: "Amit Patel", truckId: "TN03-EF9012", status: TripStatus.pending, totalKm: 350, startDate: DateTime.now().add(const Duration(days: 1))),
   ];
 
   @override
@@ -38,10 +36,10 @@ class AdminTripsScreen extends StatelessWidget {
 
   Color _getStatusColor(TripStatus status) {
     switch (status) {
-      case TripStatus.Pending: return Colors.blue;
-      case TripStatus.InProgress: return Colors.orange;
-      case TripStatus.Completed: return Colors.green;
-      case TripStatus.Cancelled: return Colors.red;
+      case TripStatus.pending: return Colors.blue;
+      case TripStatus.inProgress: return Colors.orange;
+      case TripStatus.completed: return Colors.green;
+      case TripStatus.cancelled: return Colors.red;
     }
   }
 }

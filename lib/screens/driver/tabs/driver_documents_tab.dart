@@ -13,30 +13,30 @@ class DriverDocumentsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        padding: const EdgeInsets.all(8.0),
-        itemCount: documents.length,
-        itemBuilder: (context, index) {
-          final doc = documents[index];
-          return Card(
-            child: ListTile(
-              leading: const Icon(Icons.description_outlined, color: Colors.indigo),
-              title: Text(doc['name']!, style: const TextStyle(fontWeight: FontWeight.w500)),
-              subtitle: Text(doc['expiry']!),
-              trailing: IconButton(
-                icon: const Icon(Icons.visibility_outlined),
-                onPressed: () { /* TODO: Open document viewer */ },
-              ),
+    // The Scaffold is removed. This widget now only returns the content.
+    // The FloatingActionButton will be handled by the parent screen (DriverMainScreen).
+    return ListView.builder(
+      padding: const EdgeInsets.all(8.0),
+      itemCount: documents.length,
+      itemBuilder: (context, index) {
+        final doc = documents[index];
+        return Card(
+          // Using a subtle border to match the new theme
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.grey.shade300, width: 1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: ListTile(
+            leading: const Icon(Icons.description_outlined, color: Color(0xFF2C3E50)), // New Icon Color
+            title: Text(doc['name']!, style: const TextStyle(fontWeight: FontWeight.w500)),
+            subtitle: Text(doc['expiry']!),
+            trailing: IconButton(
+              icon: const Icon(Icons.visibility_outlined),
+              onPressed: () { /* TODO: Open document viewer */ },
             ),
-          );
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () { /* TODO: Implement file picker to upload document */ },
-        label: const Text('Upload'),
-        icon: const Icon(Icons.upload_file),
-      ),
+          ),
+        );
+      },
     );
   }
 }

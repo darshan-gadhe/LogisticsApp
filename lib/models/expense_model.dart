@@ -1,5 +1,6 @@
 // lib/models/expense_model.dart
-enum ExpenseType { Fuel, Food, Maintenance, Road, Other }
+// LINT FIX: Enum values are now in lowerCamelCase.
+enum ExpenseType { fuel, food, maintenance, road, other }
 
 class Expense {
   final String id;

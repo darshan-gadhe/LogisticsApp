@@ -1,5 +1,7 @@
 // lib/models/trip_model.dart
-enum TripStatus { Pending, InProgress, Completed, Cancelled }
+
+// LINT FIX: Enum values are now in lowerCamelCase.
+enum TripStatus { pending, inProgress, completed, cancelled }
 
 class Trip {
   final String id;
